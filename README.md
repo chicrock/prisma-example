@@ -81,3 +81,12 @@ prisma generate
 ```bash
 yarn add prisma-client-lib
 ```
+
+## Prisma Deploy on demo server
+
+```bash
+prisma deploy -n
+
+# After then choose `Demo server` to set up a new Prismas server
+# It need to Authenticate in https://app.prisma.io through login
+```
