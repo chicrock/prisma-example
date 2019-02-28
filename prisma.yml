@@ -1,5 +1,5 @@
-#endpoint: http://localhost:4466
-endpoint: https://us1.prisma.sh/rock-dc28b2/prisma-example/dev
+endpoint: http://localhost:4466
+#endpoint: https://us1.prisma.sh/rock-dc28b2/prisma-example/dev
 datamodel: datamodel.prisma
 
 generate:
@@ -9,3 +9,4 @@ generate:
 hooks:
   post-deploy:
     - prisma generate
+    # - graphql get-schema --project dev
