@@ -30,6 +30,8 @@ services:
       - "4466:4466"
     environment:
       PRISMA_CONFIG: |
+      managem
+        managementApiSecret: __YOUR_MANAGEMENT_API_SECRET__
         port: 4466
         databases:
           default:
@@ -59,6 +61,9 @@ prisma init --endpoint http://localhost:4466
 
 ```bash
 prisma deploy
+
+# When using managementApiSecret
+PRISMA_MANAGEMENT_API_SECRET="__YOUR_MANAGEMENT_API_SECRET__" prisma deploy
 ```
 
 ### Generate Prisma client
@@ -68,8 +73,12 @@ prisma deploy
 ```yml
 (...)
 generate:
+  - generator: typescript-client
+    output: ./generated/prisma-client-ts/
   - generator: javascript-client
-    output: ./generated/prisma-client/
+    output: ./generated/prisma-client-js/
+  - generator: graphql-schema
+    output: ./generated/graphql-schema/
 ```
 
 ```bash

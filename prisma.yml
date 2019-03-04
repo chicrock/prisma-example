@@ -1,12 +1,18 @@
 endpoint: http://localhost:4466
 #endpoint: https://us1.prisma.sh/rock-dc28b2/prisma-example/dev
-datamodel: datamodel.prisma
+#datamodel: datamodel.prisma
+datamodel: datamodel-1551659376324.prisma
+secret: wtfprisma
 
 generate:
+  - generator: typescript-client
+    output: ./generated/prisma-client-ts/
   - generator: javascript-client
-    output: ./generated/prisma-client/
+    output: ./generated/prisma-client-js/
+  - generator: graphql-schema
+    output: ./generated/graphql-schema/
 
 hooks:
   post-deploy:
     - prisma generate
-    - graphql get-schema --project dev
+    # - graphql get-schema --project dev

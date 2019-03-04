@@ -1,0 +1,2306 @@
+type Aggregatechat {
+  count: Int!
+}
+
+type Aggregatemessage {
+  count: Int!
+}
+
+type Aggregateplace {
+  count: Int!
+}
+
+type Aggregateride {
+  count: Int!
+}
+
+type Aggregateuser {
+  count: Int!
+}
+
+type Aggregateverification {
+  count: Int!
+}
+
+type BatchPayload {
+  count: Long!
+}
+
+type chat {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  ride: ride
+  message: message
+}
+
+type chatConnection {
+  pageInfo: PageInfo!
+  edges: [chatEdge]!
+  aggregate: Aggregatechat!
+}
+
+input chatCreateInput {
+  ride: rideCreateOneWithoutChatInput
+  message: messageCreateOneWithoutChatInput
+}
+
+input chatCreateOneInput {
+  create: chatCreateInput
+  connect: chatWhereUniqueInput
+}
+
+input chatCreateOneWithoutMessageInput {
+  create: chatCreateWithoutMessageInput
+  connect: chatWhereUniqueInput
+}
+
+input chatCreateOneWithoutRideInput {
+  create: chatCreateWithoutRideInput
+  connect: chatWhereUniqueInput
+}
+
+input chatCreateWithoutMessageInput {
+  ride: rideCreateOneWithoutChatInput
+}
+
+input chatCreateWithoutRideInput {
+  message: messageCreateOneWithoutChatInput
+}
+
+type chatEdge {
+  node: chat!
+  cursor: String!
+}
+
+enum chatOrderByInput {
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type chatPreviousValues {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type chatSubscriptionPayload {
+  mutation: MutationType!
+  node: chat
+  updatedFields: [String!]
+  previousValues: chatPreviousValues
+}
+
+input chatSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: chatWhereInput
+  AND: [chatSubscriptionWhereInput!]
+  OR: [chatSubscriptionWhereInput!]
+  NOT: [chatSubscriptionWhereInput!]
+}
+
+input chatUpdateDataInput {
+  ride: rideUpdateOneWithoutChatInput
+  message: messageUpdateOneWithoutChatInput
+}
+
+input chatUpdateInput {
+  ride: rideUpdateOneWithoutChatInput
+  message: messageUpdateOneWithoutChatInput
+}
+
+input chatUpdateOneInput {
+  create: chatCreateInput
+  update: chatUpdateDataInput
+  upsert: chatUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: chatWhereUniqueInput
+}
+
+input chatUpdateOneWithoutMessageInput {
+  create: chatCreateWithoutMessageInput
+  update: chatUpdateWithoutMessageDataInput
+  upsert: chatUpsertWithoutMessageInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: chatWhereUniqueInput
+}
+
+input chatUpdateOneWithoutRideInput {
+  create: chatCreateWithoutRideInput
+  update: chatUpdateWithoutRideDataInput
+  upsert: chatUpsertWithoutRideInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: chatWhereUniqueInput
+}
+
+input chatUpdateWithoutMessageDataInput {
+  ride: rideUpdateOneWithoutChatInput
+}
+
+input chatUpdateWithoutRideDataInput {
+  message: messageUpdateOneWithoutChatInput
+}
+
+input chatUpsertNestedInput {
+  update: chatUpdateDataInput!
+  create: chatCreateInput!
+}
+
+input chatUpsertWithoutMessageInput {
+  update: chatUpdateWithoutMessageDataInput!
+  create: chatCreateWithoutMessageInput!
+}
+
+input chatUpsertWithoutRideInput {
+  update: chatUpdateWithoutRideDataInput!
+  create: chatCreateWithoutRideInput!
+}
+
+input chatWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  ride: rideWhereInput
+  message: messageWhereInput
+  AND: [chatWhereInput!]
+  OR: [chatWhereInput!]
+  NOT: [chatWhereInput!]
+}
+
+input chatWhereUniqueInput {
+  id: ID
+}
+
+scalar DateTime
+
+scalar Long
+
+type message {
+  id: ID!
+  text: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  chat: chat
+  user: user
+}
+
+type messageConnection {
+  pageInfo: PageInfo!
+  edges: [messageEdge]!
+  aggregate: Aggregatemessage!
+}
+
+input messageCreateInput {
+  text: String!
+  chat: chatCreateOneWithoutMessageInput
+  user: userCreateOneWithoutMessageInput
+}
+
+input messageCreateManyWithoutUserInput {
+  create: [messageCreateWithoutUserInput!]
+  connect: [messageWhereUniqueInput!]
+}
+
+input messageCreateOneWithoutChatInput {
+  create: messageCreateWithoutChatInput
+  connect: messageWhereUniqueInput
+}
+
+input messageCreateWithoutChatInput {
+  text: String!
+  user: userCreateOneWithoutMessageInput
+}
+
+input messageCreateWithoutUserInput {
+  text: String!
+  chat: chatCreateOneWithoutMessageInput
+}
+
+type messageEdge {
+  node: message!
+  cursor: String!
+}
+
+enum messageOrderByInput {
+  id_ASC
+  id_DESC
+  text_ASC
+  text_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type messagePreviousValues {
+  id: ID!
+  text: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input messageScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  text: String
+  text_not: String
+  text_in: [String!]
+  text_not_in: [String!]
+  text_lt: String
+  text_lte: String
+  text_gt: String
+  text_gte: String
+  text_contains: String
+  text_not_contains: String
+  text_starts_with: String
+  text_not_starts_with: String
+  text_ends_with: String
+  text_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [messageScalarWhereInput!]
+  OR: [messageScalarWhereInput!]
+  NOT: [messageScalarWhereInput!]
+}
+
+type messageSubscriptionPayload {
+  mutation: MutationType!
+  node: message
+  updatedFields: [String!]
+  previousValues: messagePreviousValues
+}
+
+input messageSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: messageWhereInput
+  AND: [messageSubscriptionWhereInput!]
+  OR: [messageSubscriptionWhereInput!]
+  NOT: [messageSubscriptionWhereInput!]
+}
+
+input messageUpdateInput {
+  text: String
+  chat: chatUpdateOneWithoutMessageInput
+  user: userUpdateOneWithoutMessageInput
+}
+
+input messageUpdateManyDataInput {
+  text: String
+}
+
+input messageUpdateManyMutationInput {
+  text: String
+}
+
+input messageUpdateManyWithoutUserInput {
+  create: [messageCreateWithoutUserInput!]
+  delete: [messageWhereUniqueInput!]
+  connect: [messageWhereUniqueInput!]
+  set: [messageWhereUniqueInput!]
+  disconnect: [messageWhereUniqueInput!]
+  update: [messageUpdateWithWhereUniqueWithoutUserInput!]
+  upsert: [messageUpsertWithWhereUniqueWithoutUserInput!]
+  deleteMany: [messageScalarWhereInput!]
+  updateMany: [messageUpdateManyWithWhereNestedInput!]
+}
+
+input messageUpdateManyWithWhereNestedInput {
+  where: messageScalarWhereInput!
+  data: messageUpdateManyDataInput!
+}
+
+input messageUpdateOneWithoutChatInput {
+  create: messageCreateWithoutChatInput
+  update: messageUpdateWithoutChatDataInput
+  upsert: messageUpsertWithoutChatInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: messageWhereUniqueInput
+}
+
+input messageUpdateWithoutChatDataInput {
+  text: String
+  user: userUpdateOneWithoutMessageInput
+}
+
+input messageUpdateWithoutUserDataInput {
+  text: String
+  chat: chatUpdateOneWithoutMessageInput
+}
+
+input messageUpdateWithWhereUniqueWithoutUserInput {
+  where: messageWhereUniqueInput!
+  data: messageUpdateWithoutUserDataInput!
+}
+
+input messageUpsertWithoutChatInput {
+  update: messageUpdateWithoutChatDataInput!
+  create: messageCreateWithoutChatInput!
+}
+
+input messageUpsertWithWhereUniqueWithoutUserInput {
+  where: messageWhereUniqueInput!
+  update: messageUpdateWithoutUserDataInput!
+  create: messageCreateWithoutUserInput!
+}
+
+input messageWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  text: String
+  text_not: String
+  text_in: [String!]
+  text_not_in: [String!]
+  text_lt: String
+  text_lte: String
+  text_gt: String
+  text_gte: String
+  text_contains: String
+  text_not_contains: String
+  text_starts_with: String
+  text_not_starts_with: String
+  text_ends_with: String
+  text_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  chat: chatWhereInput
+  user: userWhereInput
+  AND: [messageWhereInput!]
+  OR: [messageWhereInput!]
+  NOT: [messageWhereInput!]
+}
+
+input messageWhereUniqueInput {
+  id: ID
+}
+
+type Mutation {
+  createchat(data: chatCreateInput!): chat!
+  updatechat(data: chatUpdateInput!, where: chatWhereUniqueInput!): chat
+  upsertchat(where: chatWhereUniqueInput!, create: chatCreateInput!, update: chatUpdateInput!): chat!
+  deletechat(where: chatWhereUniqueInput!): chat
+  deleteManychats(where: chatWhereInput): BatchPayload!
+  createmessage(data: messageCreateInput!): message!
+  updatemessage(data: messageUpdateInput!, where: messageWhereUniqueInput!): message
+  updateManymessages(data: messageUpdateManyMutationInput!, where: messageWhereInput): BatchPayload!
+  upsertmessage(where: messageWhereUniqueInput!, create: messageCreateInput!, update: messageUpdateInput!): message!
+  deletemessage(where: messageWhereUniqueInput!): message
+  deleteManymessages(where: messageWhereInput): BatchPayload!
+  createplace(data: placeCreateInput!): place!
+  updateplace(data: placeUpdateInput!, where: placeWhereUniqueInput!): place
+  updateManyplaces(data: placeUpdateManyMutationInput!, where: placeWhereInput): BatchPayload!
+  upsertplace(where: placeWhereUniqueInput!, create: placeCreateInput!, update: placeUpdateInput!): place!
+  deleteplace(where: placeWhereUniqueInput!): place
+  deleteManyplaces(where: placeWhereInput): BatchPayload!
+  createride(data: rideCreateInput!): ride!
+  updateride(data: rideUpdateInput!, where: rideWhereUniqueInput!): ride
+  updateManyrides(data: rideUpdateManyMutationInput!, where: rideWhereInput): BatchPayload!
+  upsertride(where: rideWhereUniqueInput!, create: rideCreateInput!, update: rideUpdateInput!): ride!
+  deleteride(where: rideWhereUniqueInput!): ride
+  deleteManyrides(where: rideWhereInput): BatchPayload!
+  createuser(data: userCreateInput!): user!
+  updateuser(data: userUpdateInput!, where: userWhereUniqueInput!): user
+  updateManyusers(data: userUpdateManyMutationInput!, where: userWhereInput): BatchPayload!
+  upsertuser(where: userWhereUniqueInput!, create: userCreateInput!, update: userUpdateInput!): user!
+  deleteuser(where: userWhereUniqueInput!): user
+  deleteManyusers(where: userWhereInput): BatchPayload!
+  createverification(data: verificationCreateInput!): verification!
+  updateverification(data: verificationUpdateInput!, where: verificationWhereUniqueInput!): verification
+  updateManyverifications(data: verificationUpdateManyMutationInput!, where: verificationWhereInput): BatchPayload!
+  upsertverification(where: verificationWhereUniqueInput!, create: verificationCreateInput!, update: verificationUpdateInput!): verification!
+  deleteverification(where: verificationWhereUniqueInput!): verification
+  deleteManyverifications(where: verificationWhereInput): BatchPayload!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type place {
+  id: ID!
+  name: String!
+  lat: Float!
+  lng: Float!
+  address: String!
+  isFav: Boolean!
+  user: user
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type placeConnection {
+  pageInfo: PageInfo!
+  edges: [placeEdge]!
+  aggregate: Aggregateplace!
+}
+
+input placeCreateInput {
+  name: String!
+  lat: Float
+  lng: Float
+  address: String!
+  isFav: Boolean
+  user: userCreateOneWithoutPlaceInput
+}
+
+input placeCreateManyWithoutUserInput {
+  create: [placeCreateWithoutUserInput!]
+  connect: [placeWhereUniqueInput!]
+}
+
+input placeCreateWithoutUserInput {
+  name: String!
+  lat: Float
+  lng: Float
+  address: String!
+  isFav: Boolean
+}
+
+type placeEdge {
+  node: place!
+  cursor: String!
+}
+
+enum placeOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  lat_ASC
+  lat_DESC
+  lng_ASC
+  lng_DESC
+  address_ASC
+  address_DESC
+  isFav_ASC
+  isFav_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type placePreviousValues {
+  id: ID!
+  name: String!
+  lat: Float!
+  lng: Float!
+  address: String!
+  isFav: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input placeScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  lat: Float
+  lat_not: Float
+  lat_in: [Float!]
+  lat_not_in: [Float!]
+  lat_lt: Float
+  lat_lte: Float
+  lat_gt: Float
+  lat_gte: Float
+  lng: Float
+  lng_not: Float
+  lng_in: [Float!]
+  lng_not_in: [Float!]
+  lng_lt: Float
+  lng_lte: Float
+  lng_gt: Float
+  lng_gte: Float
+  address: String
+  address_not: String
+  address_in: [String!]
+  address_not_in: [String!]
+  address_lt: String
+  address_lte: String
+  address_gt: String
+  address_gte: String
+  address_contains: String
+  address_not_contains: String
+  address_starts_with: String
+  address_not_starts_with: String
+  address_ends_with: String
+  address_not_ends_with: String
+  isFav: Boolean
+  isFav_not: Boolean
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [placeScalarWhereInput!]
+  OR: [placeScalarWhereInput!]
+  NOT: [placeScalarWhereInput!]
+}
+
+type placeSubscriptionPayload {
+  mutation: MutationType!
+  node: place
+  updatedFields: [String!]
+  previousValues: placePreviousValues
+}
+
+input placeSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: placeWhereInput
+  AND: [placeSubscriptionWhereInput!]
+  OR: [placeSubscriptionWhereInput!]
+  NOT: [placeSubscriptionWhereInput!]
+}
+
+input placeUpdateInput {
+  name: String
+  lat: Float
+  lng: Float
+  address: String
+  isFav: Boolean
+  user: userUpdateOneWithoutPlaceInput
+}
+
+input placeUpdateManyDataInput {
+  name: String
+  lat: Float
+  lng: Float
+  address: String
+  isFav: Boolean
+}
+
+input placeUpdateManyMutationInput {
+  name: String
+  lat: Float
+  lng: Float
+  address: String
+  isFav: Boolean
+}
+
+input placeUpdateManyWithoutUserInput {
+  create: [placeCreateWithoutUserInput!]
+  delete: [placeWhereUniqueInput!]
+  connect: [placeWhereUniqueInput!]
+  set: [placeWhereUniqueInput!]
+  disconnect: [placeWhereUniqueInput!]
+  update: [placeUpdateWithWhereUniqueWithoutUserInput!]
+  upsert: [placeUpsertWithWhereUniqueWithoutUserInput!]
+  deleteMany: [placeScalarWhereInput!]
+  updateMany: [placeUpdateManyWithWhereNestedInput!]
+}
+
+input placeUpdateManyWithWhereNestedInput {
+  where: placeScalarWhereInput!
+  data: placeUpdateManyDataInput!
+}
+
+input placeUpdateWithoutUserDataInput {
+  name: String
+  lat: Float
+  lng: Float
+  address: String
+  isFav: Boolean
+}
+
+input placeUpdateWithWhereUniqueWithoutUserInput {
+  where: placeWhereUniqueInput!
+  data: placeUpdateWithoutUserDataInput!
+}
+
+input placeUpsertWithWhereUniqueWithoutUserInput {
+  where: placeWhereUniqueInput!
+  update: placeUpdateWithoutUserDataInput!
+  create: placeCreateWithoutUserInput!
+}
+
+input placeWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  lat: Float
+  lat_not: Float
+  lat_in: [Float!]
+  lat_not_in: [Float!]
+  lat_lt: Float
+  lat_lte: Float
+  lat_gt: Float
+  lat_gte: Float
+  lng: Float
+  lng_not: Float
+  lng_in: [Float!]
+  lng_not_in: [Float!]
+  lng_lt: Float
+  lng_lte: Float
+  lng_gt: Float
+  lng_gte: Float
+  address: String
+  address_not: String
+  address_in: [String!]
+  address_not_in: [String!]
+  address_lt: String
+  address_lte: String
+  address_gt: String
+  address_gte: String
+  address_contains: String
+  address_not_contains: String
+  address_starts_with: String
+  address_not_starts_with: String
+  address_ends_with: String
+  address_not_ends_with: String
+  isFav: Boolean
+  isFav_not: Boolean
+  user: userWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [placeWhereInput!]
+  OR: [placeWhereInput!]
+  NOT: [placeWhereInput!]
+}
+
+input placeWhereUniqueInput {
+  id: ID
+}
+
+type Query {
+  chat(where: chatWhereUniqueInput!): chat
+  chats(where: chatWhereInput, orderBy: chatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [chat]!
+  chatsConnection(where: chatWhereInput, orderBy: chatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): chatConnection!
+  message(where: messageWhereUniqueInput!): message
+  messages(where: messageWhereInput, orderBy: messageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [message]!
+  messagesConnection(where: messageWhereInput, orderBy: messageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): messageConnection!
+  place(where: placeWhereUniqueInput!): place
+  places(where: placeWhereInput, orderBy: placeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [place]!
+  placesConnection(where: placeWhereInput, orderBy: placeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): placeConnection!
+  ride(where: rideWhereUniqueInput!): ride
+  rides(where: rideWhereInput, orderBy: rideOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ride]!
+  ridesConnection(where: rideWhereInput, orderBy: rideOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): rideConnection!
+  user(where: userWhereUniqueInput!): user
+  users(where: userWhereInput, orderBy: userOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [user]!
+  usersConnection(where: userWhereInput, orderBy: userOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): userConnection!
+  verification(where: verificationWhereUniqueInput!): verification
+  verifications(where: verificationWhereInput, orderBy: verificationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [verification]!
+  verificationsConnection(where: verificationWhereInput, orderBy: verificationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): verificationConnection!
+  node(id: ID!): Node
+}
+
+type ride {
+  id: ID!
+  status: String!
+  pickupAddress: String!
+  pickupLat: Float!
+  pickupLng: Float!
+  dropOffAddress: String!
+  dropOffLat: Float!
+  dropOffLng: Float!
+  price: Float!
+  distance: String!
+  duration: String!
+  passenger: user
+  driver: user
+  chat: chat
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type rideConnection {
+  pageInfo: PageInfo!
+  edges: [rideEdge]!
+  aggregate: Aggregateride!
+}
+
+input rideCreateInput {
+  status: String
+  pickupAddress: String!
+  pickupLat: Float
+  pickupLng: Float
+  dropOffAddress: String!
+  dropOffLat: Float
+  dropOffLng: Float
+  price: Float
+  distance: String!
+  duration: String!
+  passenger: userCreateOneWithoutRideAsPassengerInput
+  driver: userCreateOneWithoutRideAsDriverInput
+  chat: chatCreateOneWithoutRideInput
+}
+
+input rideCreateManyWithoutDriverInput {
+  create: [rideCreateWithoutDriverInput!]
+  connect: [rideWhereUniqueInput!]
+}
+
+input rideCreateManyWithoutPassengerInput {
+  create: [rideCreateWithoutPassengerInput!]
+  connect: [rideWhereUniqueInput!]
+}
+
+input rideCreateOneWithoutChatInput {
+  create: rideCreateWithoutChatInput
+  connect: rideWhereUniqueInput
+}
+
+input rideCreateWithoutChatInput {
+  status: String
+  pickupAddress: String!
+  pickupLat: Float
+  pickupLng: Float
+  dropOffAddress: String!
+  dropOffLat: Float
+  dropOffLng: Float
+  price: Float
+  distance: String!
+  duration: String!
+  passenger: userCreateOneWithoutRideAsPassengerInput
+  driver: userCreateOneWithoutRideAsDriverInput
+}
+
+input rideCreateWithoutDriverInput {
+  status: String
+  pickupAddress: String!
+  pickupLat: Float
+  pickupLng: Float
+  dropOffAddress: String!
+  dropOffLat: Float
+  dropOffLng: Float
+  price: Float
+  distance: String!
+  duration: String!
+  passenger: userCreateOneWithoutRideAsPassengerInput
+  chat: chatCreateOneWithoutRideInput
+}
+
+input rideCreateWithoutPassengerInput {
+  status: String
+  pickupAddress: String!
+  pickupLat: Float
+  pickupLng: Float
+  dropOffAddress: String!
+  dropOffLat: Float
+  dropOffLng: Float
+  price: Float
+  distance: String!
+  duration: String!
+  driver: userCreateOneWithoutRideAsDriverInput
+  chat: chatCreateOneWithoutRideInput
+}
+
+type rideEdge {
+  node: ride!
+  cursor: String!
+}
+
+enum rideOrderByInput {
+  id_ASC
+  id_DESC
+  status_ASC
+  status_DESC
+  pickupAddress_ASC
+  pickupAddress_DESC
+  pickupLat_ASC
+  pickupLat_DESC
+  pickupLng_ASC
+  pickupLng_DESC
+  dropOffAddress_ASC
+  dropOffAddress_DESC
+  dropOffLat_ASC
+  dropOffLat_DESC
+  dropOffLng_ASC
+  dropOffLng_DESC
+  price_ASC
+  price_DESC
+  distance_ASC
+  distance_DESC
+  duration_ASC
+  duration_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ridePreviousValues {
+  id: ID!
+  status: String!
+  pickupAddress: String!
+  pickupLat: Float!
+  pickupLng: Float!
+  dropOffAddress: String!
+  dropOffLat: Float!
+  dropOffLng: Float!
+  price: Float!
+  distance: String!
+  duration: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input rideScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  status: String
+  status_not: String
+  status_in: [String!]
+  status_not_in: [String!]
+  status_lt: String
+  status_lte: String
+  status_gt: String
+  status_gte: String
+  status_contains: String
+  status_not_contains: String
+  status_starts_with: String
+  status_not_starts_with: String
+  status_ends_with: String
+  status_not_ends_with: String
+  pickupAddress: String
+  pickupAddress_not: String
+  pickupAddress_in: [String!]
+  pickupAddress_not_in: [String!]
+  pickupAddress_lt: String
+  pickupAddress_lte: String
+  pickupAddress_gt: String
+  pickupAddress_gte: String
+  pickupAddress_contains: String
+  pickupAddress_not_contains: String
+  pickupAddress_starts_with: String
+  pickupAddress_not_starts_with: String
+  pickupAddress_ends_with: String
+  pickupAddress_not_ends_with: String
+  pickupLat: Float
+  pickupLat_not: Float
+  pickupLat_in: [Float!]
+  pickupLat_not_in: [Float!]
+  pickupLat_lt: Float
+  pickupLat_lte: Float
+  pickupLat_gt: Float
+  pickupLat_gte: Float
+  pickupLng: Float
+  pickupLng_not: Float
+  pickupLng_in: [Float!]
+  pickupLng_not_in: [Float!]
+  pickupLng_lt: Float
+  pickupLng_lte: Float
+  pickupLng_gt: Float
+  pickupLng_gte: Float
+  dropOffAddress: String
+  dropOffAddress_not: String
+  dropOffAddress_in: [String!]
+  dropOffAddress_not_in: [String!]
+  dropOffAddress_lt: String
+  dropOffAddress_lte: String
+  dropOffAddress_gt: String
+  dropOffAddress_gte: String
+  dropOffAddress_contains: String
+  dropOffAddress_not_contains: String
+  dropOffAddress_starts_with: String
+  dropOffAddress_not_starts_with: String
+  dropOffAddress_ends_with: String
+  dropOffAddress_not_ends_with: String
+  dropOffLat: Float
+  dropOffLat_not: Float
+  dropOffLat_in: [Float!]
+  dropOffLat_not_in: [Float!]
+  dropOffLat_lt: Float
+  dropOffLat_lte: Float
+  dropOffLat_gt: Float
+  dropOffLat_gte: Float
+  dropOffLng: Float
+  dropOffLng_not: Float
+  dropOffLng_in: [Float!]
+  dropOffLng_not_in: [Float!]
+  dropOffLng_lt: Float
+  dropOffLng_lte: Float
+  dropOffLng_gt: Float
+  dropOffLng_gte: Float
+  price: Float
+  price_not: Float
+  price_in: [Float!]
+  price_not_in: [Float!]
+  price_lt: Float
+  price_lte: Float
+  price_gt: Float
+  price_gte: Float
+  distance: String
+  distance_not: String
+  distance_in: [String!]
+  distance_not_in: [String!]
+  distance_lt: String
+  distance_lte: String
+  distance_gt: String
+  distance_gte: String
+  distance_contains: String
+  distance_not_contains: String
+  distance_starts_with: String
+  distance_not_starts_with: String
+  distance_ends_with: String
+  distance_not_ends_with: String
+  duration: String
+  duration_not: String
+  duration_in: [String!]
+  duration_not_in: [String!]
+  duration_lt: String
+  duration_lte: String
+  duration_gt: String
+  duration_gte: String
+  duration_contains: String
+  duration_not_contains: String
+  duration_starts_with: String
+  duration_not_starts_with: String
+  duration_ends_with: String
+  duration_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [rideScalarWhereInput!]
+  OR: [rideScalarWhereInput!]
+  NOT: [rideScalarWhereInput!]
+}
+
+type rideSubscriptionPayload {
+  mutation: MutationType!
+  node: ride
+  updatedFields: [String!]
+  previousValues: ridePreviousValues
+}
+
+input rideSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: rideWhereInput
+  AND: [rideSubscriptionWhereInput!]
+  OR: [rideSubscriptionWhereInput!]
+  NOT: [rideSubscriptionWhereInput!]
+}
+
+input rideUpdateInput {
+  status: String
+  pickupAddress: String
+  pickupLat: Float
+  pickupLng: Float
+  dropOffAddress: String
+  dropOffLat: Float
+  dropOffLng: Float
+  price: Float
+  distance: String
+  duration: String
+  passenger: userUpdateOneWithoutRideAsPassengerInput
+  driver: userUpdateOneWithoutRideAsDriverInput
+  chat: chatUpdateOneWithoutRideInput
+}
+
+input rideUpdateManyDataInput {
+  status: String
+  pickupAddress: String
+  pickupLat: Float
+  pickupLng: Float
+  dropOffAddress: String
+  dropOffLat: Float
+  dropOffLng: Float
+  price: Float
+  distance: String
+  duration: String
+}
+
+input rideUpdateManyMutationInput {
+  status: String
+  pickupAddress: String
+  pickupLat: Float
+  pickupLng: Float
+  dropOffAddress: String
+  dropOffLat: Float
+  dropOffLng: Float
+  price: Float
+  distance: String
+  duration: String
+}
+
+input rideUpdateManyWithoutDriverInput {
+  create: [rideCreateWithoutDriverInput!]
+  delete: [rideWhereUniqueInput!]
+  connect: [rideWhereUniqueInput!]
+  set: [rideWhereUniqueInput!]
+  disconnect: [rideWhereUniqueInput!]
+  update: [rideUpdateWithWhereUniqueWithoutDriverInput!]
+  upsert: [rideUpsertWithWhereUniqueWithoutDriverInput!]
+  deleteMany: [rideScalarWhereInput!]
+  updateMany: [rideUpdateManyWithWhereNestedInput!]
+}
+
+input rideUpdateManyWithoutPassengerInput {
+  create: [rideCreateWithoutPassengerInput!]
+  delete: [rideWhereUniqueInput!]
+  connect: [rideWhereUniqueInput!]
+  set: [rideWhereUniqueInput!]
+  disconnect: [rideWhereUniqueInput!]
+  update: [rideUpdateWithWhereUniqueWithoutPassengerInput!]
+  upsert: [rideUpsertWithWhereUniqueWithoutPassengerInput!]
+  deleteMany: [rideScalarWhereInput!]
+  updateMany: [rideUpdateManyWithWhereNestedInput!]
+}
+
+input rideUpdateManyWithWhereNestedInput {
+  where: rideScalarWhereInput!
+  data: rideUpdateManyDataInput!
+}
+
+input rideUpdateOneWithoutChatInput {
+  create: rideCreateWithoutChatInput
+  update: rideUpdateWithoutChatDataInput
+  upsert: rideUpsertWithoutChatInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: rideWhereUniqueInput
+}
+
+input rideUpdateWithoutChatDataInput {
+  status: String
+  pickupAddress: String
+  pickupLat: Float
+  pickupLng: Float
+  dropOffAddress: String
+  dropOffLat: Float
+  dropOffLng: Float
+  price: Float
+  distance: String
+  duration: String
+  passenger: userUpdateOneWithoutRideAsPassengerInput
+  driver: userUpdateOneWithoutRideAsDriverInput
+}
+
+input rideUpdateWithoutDriverDataInput {
+  status: String
+  pickupAddress: String
+  pickupLat: Float
+  pickupLng: Float
+  dropOffAddress: String
+  dropOffLat: Float
+  dropOffLng: Float
+  price: Float
+  distance: String
+  duration: String
+  passenger: userUpdateOneWithoutRideAsPassengerInput
+  chat: chatUpdateOneWithoutRideInput
+}
+
+input rideUpdateWithoutPassengerDataInput {
+  status: String
+  pickupAddress: String
+  pickupLat: Float
+  pickupLng: Float
+  dropOffAddress: String
+  dropOffLat: Float
+  dropOffLng: Float
+  price: Float
+  distance: String
+  duration: String
+  driver: userUpdateOneWithoutRideAsDriverInput
+  chat: chatUpdateOneWithoutRideInput
+}
+
+input rideUpdateWithWhereUniqueWithoutDriverInput {
+  where: rideWhereUniqueInput!
+  data: rideUpdateWithoutDriverDataInput!
+}
+
+input rideUpdateWithWhereUniqueWithoutPassengerInput {
+  where: rideWhereUniqueInput!
+  data: rideUpdateWithoutPassengerDataInput!
+}
+
+input rideUpsertWithoutChatInput {
+  update: rideUpdateWithoutChatDataInput!
+  create: rideCreateWithoutChatInput!
+}
+
+input rideUpsertWithWhereUniqueWithoutDriverInput {
+  where: rideWhereUniqueInput!
+  update: rideUpdateWithoutDriverDataInput!
+  create: rideCreateWithoutDriverInput!
+}
+
+input rideUpsertWithWhereUniqueWithoutPassengerInput {
+  where: rideWhereUniqueInput!
+  update: rideUpdateWithoutPassengerDataInput!
+  create: rideCreateWithoutPassengerInput!
+}
+
+input rideWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  status: String
+  status_not: String
+  status_in: [String!]
+  status_not_in: [String!]
+  status_lt: String
+  status_lte: String
+  status_gt: String
+  status_gte: String
+  status_contains: String
+  status_not_contains: String
+  status_starts_with: String
+  status_not_starts_with: String
+  status_ends_with: String
+  status_not_ends_with: String
+  pickupAddress: String
+  pickupAddress_not: String
+  pickupAddress_in: [String!]
+  pickupAddress_not_in: [String!]
+  pickupAddress_lt: String
+  pickupAddress_lte: String
+  pickupAddress_gt: String
+  pickupAddress_gte: String
+  pickupAddress_contains: String
+  pickupAddress_not_contains: String
+  pickupAddress_starts_with: String
+  pickupAddress_not_starts_with: String
+  pickupAddress_ends_with: String
+  pickupAddress_not_ends_with: String
+  pickupLat: Float
+  pickupLat_not: Float
+  pickupLat_in: [Float!]
+  pickupLat_not_in: [Float!]
+  pickupLat_lt: Float
+  pickupLat_lte: Float
+  pickupLat_gt: Float
+  pickupLat_gte: Float
+  pickupLng: Float
+  pickupLng_not: Float
+  pickupLng_in: [Float!]
+  pickupLng_not_in: [Float!]
+  pickupLng_lt: Float
+  pickupLng_lte: Float
+  pickupLng_gt: Float
+  pickupLng_gte: Float
+  dropOffAddress: String
+  dropOffAddress_not: String
+  dropOffAddress_in: [String!]
+  dropOffAddress_not_in: [String!]
+  dropOffAddress_lt: String
+  dropOffAddress_lte: String
+  dropOffAddress_gt: String
+  dropOffAddress_gte: String
+  dropOffAddress_contains: String
+  dropOffAddress_not_contains: String
+  dropOffAddress_starts_with: String
+  dropOffAddress_not_starts_with: String
+  dropOffAddress_ends_with: String
+  dropOffAddress_not_ends_with: String
+  dropOffLat: Float
+  dropOffLat_not: Float
+  dropOffLat_in: [Float!]
+  dropOffLat_not_in: [Float!]
+  dropOffLat_lt: Float
+  dropOffLat_lte: Float
+  dropOffLat_gt: Float
+  dropOffLat_gte: Float
+  dropOffLng: Float
+  dropOffLng_not: Float
+  dropOffLng_in: [Float!]
+  dropOffLng_not_in: [Float!]
+  dropOffLng_lt: Float
+  dropOffLng_lte: Float
+  dropOffLng_gt: Float
+  dropOffLng_gte: Float
+  price: Float
+  price_not: Float
+  price_in: [Float!]
+  price_not_in: [Float!]
+  price_lt: Float
+  price_lte: Float
+  price_gt: Float
+  price_gte: Float
+  distance: String
+  distance_not: String
+  distance_in: [String!]
+  distance_not_in: [String!]
+  distance_lt: String
+  distance_lte: String
+  distance_gt: String
+  distance_gte: String
+  distance_contains: String
+  distance_not_contains: String
+  distance_starts_with: String
+  distance_not_starts_with: String
+  distance_ends_with: String
+  distance_not_ends_with: String
+  duration: String
+  duration_not: String
+  duration_in: [String!]
+  duration_not_in: [String!]
+  duration_lt: String
+  duration_lte: String
+  duration_gt: String
+  duration_gte: String
+  duration_contains: String
+  duration_not_contains: String
+  duration_starts_with: String
+  duration_not_starts_with: String
+  duration_ends_with: String
+  duration_not_ends_with: String
+  passenger: userWhereInput
+  driver: userWhereInput
+  chat: chatWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [rideWhereInput!]
+  OR: [rideWhereInput!]
+  NOT: [rideWhereInput!]
+}
+
+input rideWhereUniqueInput {
+  id: ID
+}
+
+type Subscription {
+  chat(where: chatSubscriptionWhereInput): chatSubscriptionPayload
+  message(where: messageSubscriptionWhereInput): messageSubscriptionPayload
+  place(where: placeSubscriptionWhereInput): placeSubscriptionPayload
+  ride(where: rideSubscriptionWhereInput): rideSubscriptionPayload
+  user(where: userSubscriptionWhereInput): userSubscriptionPayload
+  verification(where: verificationSubscriptionWhereInput): verificationSubscriptionPayload
+}
+
+type user {
+  id: ID!
+  email: String
+  verifiedEmail: Boolean!
+  firstName: String!
+  lastName: String!
+  age: Int
+  password: String
+  phoneNumber: String
+  verifiedPhoneNumber: Boolean!
+  profilePhoto: String!
+  isDriving: Boolean!
+  isRiding: Boolean!
+  isTaken: Boolean!
+  lastLng: Float!
+  lastLat: Float!
+  lastOrientation: Float!
+  fbId: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  rideAsPassenger(where: rideWhereInput, orderBy: rideOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ride!]
+  rideAsDriver(where: rideWhereInput, orderBy: rideOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ride!]
+  place(where: placeWhereInput, orderBy: placeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [place!]
+  message(where: messageWhereInput, orderBy: messageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [message!]
+  chat: chat
+}
+
+type userConnection {
+  pageInfo: PageInfo!
+  edges: [userEdge]!
+  aggregate: Aggregateuser!
+}
+
+input userCreateInput {
+  email: String
+  verifiedEmail: Boolean
+  firstName: String!
+  lastName: String!
+  age: Int
+  password: String
+  phoneNumber: String
+  verifiedPhoneNumber: Boolean
+  profilePhoto: String!
+  isDriving: Boolean
+  isRiding: Boolean
+  isTaken: Boolean
+  lastLng: Float
+  lastLat: Float
+  lastOrientation: Float
+  fbId: String
+  rideAsPassenger: rideCreateManyWithoutPassengerInput
+  rideAsDriver: rideCreateManyWithoutDriverInput
+  place: placeCreateManyWithoutUserInput
+  message: messageCreateManyWithoutUserInput
+  chat: chatCreateOneInput
+}
+
+input userCreateOneWithoutMessageInput {
+  create: userCreateWithoutMessageInput
+  connect: userWhereUniqueInput
+}
+
+input userCreateOneWithoutPlaceInput {
+  create: userCreateWithoutPlaceInput
+  connect: userWhereUniqueInput
+}
+
+input userCreateOneWithoutRideAsDriverInput {
+  create: userCreateWithoutRideAsDriverInput
+  connect: userWhereUniqueInput
+}
+
+input userCreateOneWithoutRideAsPassengerInput {
+  create: userCreateWithoutRideAsPassengerInput
+  connect: userWhereUniqueInput
+}
+
+input userCreateWithoutMessageInput {
+  email: String
+  verifiedEmail: Boolean
+  firstName: String!
+  lastName: String!
+  age: Int
+  password: String
+  phoneNumber: String
+  verifiedPhoneNumber: Boolean
+  profilePhoto: String!
+  isDriving: Boolean
+  isRiding: Boolean
+  isTaken: Boolean
+  lastLng: Float
+  lastLat: Float
+  lastOrientation: Float
+  fbId: String
+  rideAsPassenger: rideCreateManyWithoutPassengerInput
+  rideAsDriver: rideCreateManyWithoutDriverInput
+  place: placeCreateManyWithoutUserInput
+  chat: chatCreateOneInput
+}
+
+input userCreateWithoutPlaceInput {
+  email: String
+  verifiedEmail: Boolean
+  firstName: String!
+  lastName: String!
+  age: Int
+  password: String
+  phoneNumber: String
+  verifiedPhoneNumber: Boolean
+  profilePhoto: String!
+  isDriving: Boolean
+  isRiding: Boolean
+  isTaken: Boolean
+  lastLng: Float
+  lastLat: Float
+  lastOrientation: Float
+  fbId: String
+  rideAsPassenger: rideCreateManyWithoutPassengerInput
+  rideAsDriver: rideCreateManyWithoutDriverInput
+  message: messageCreateManyWithoutUserInput
+  chat: chatCreateOneInput
+}
+
+input userCreateWithoutRideAsDriverInput {
+  email: String
+  verifiedEmail: Boolean
+  firstName: String!
+  lastName: String!
+  age: Int
+  password: String
+  phoneNumber: String
+  verifiedPhoneNumber: Boolean
+  profilePhoto: String!
+  isDriving: Boolean
+  isRiding: Boolean
+  isTaken: Boolean
+  lastLng: Float
+  lastLat: Float
+  lastOrientation: Float
+  fbId: String
+  rideAsPassenger: rideCreateManyWithoutPassengerInput
+  place: placeCreateManyWithoutUserInput
+  message: messageCreateManyWithoutUserInput
+  chat: chatCreateOneInput
+}
+
+input userCreateWithoutRideAsPassengerInput {
+  email: String
+  verifiedEmail: Boolean
+  firstName: String!
+  lastName: String!
+  age: Int
+  password: String
+  phoneNumber: String
+  verifiedPhoneNumber: Boolean
+  profilePhoto: String!
+  isDriving: Boolean
+  isRiding: Boolean
+  isTaken: Boolean
+  lastLng: Float
+  lastLat: Float
+  lastOrientation: Float
+  fbId: String
+  rideAsDriver: rideCreateManyWithoutDriverInput
+  place: placeCreateManyWithoutUserInput
+  message: messageCreateManyWithoutUserInput
+  chat: chatCreateOneInput
+}
+
+type userEdge {
+  node: user!
+  cursor: String!
+}
+
+enum userOrderByInput {
+  id_ASC
+  id_DESC
+  email_ASC
+  email_DESC
+  verifiedEmail_ASC
+  verifiedEmail_DESC
+  firstName_ASC
+  firstName_DESC
+  lastName_ASC
+  lastName_DESC
+  age_ASC
+  age_DESC
+  password_ASC
+  password_DESC
+  phoneNumber_ASC
+  phoneNumber_DESC
+  verifiedPhoneNumber_ASC
+  verifiedPhoneNumber_DESC
+  profilePhoto_ASC
+  profilePhoto_DESC
+  isDriving_ASC
+  isDriving_DESC
+  isRiding_ASC
+  isRiding_DESC
+  isTaken_ASC
+  isTaken_DESC
+  lastLng_ASC
+  lastLng_DESC
+  lastLat_ASC
+  lastLat_DESC
+  lastOrientation_ASC
+  lastOrientation_DESC
+  fbId_ASC
+  fbId_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type userPreviousValues {
+  id: ID!
+  email: String
+  verifiedEmail: Boolean!
+  firstName: String!
+  lastName: String!
+  age: Int
+  password: String
+  phoneNumber: String
+  verifiedPhoneNumber: Boolean!
+  profilePhoto: String!
+  isDriving: Boolean!
+  isRiding: Boolean!
+  isTaken: Boolean!
+  lastLng: Float!
+  lastLat: Float!
+  lastOrientation: Float!
+  fbId: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type userSubscriptionPayload {
+  mutation: MutationType!
+  node: user
+  updatedFields: [String!]
+  previousValues: userPreviousValues
+}
+
+input userSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: userWhereInput
+  AND: [userSubscriptionWhereInput!]
+  OR: [userSubscriptionWhereInput!]
+  NOT: [userSubscriptionWhereInput!]
+}
+
+input userUpdateInput {
+  email: String
+  verifiedEmail: Boolean
+  firstName: String
+  lastName: String
+  age: Int
+  password: String
+  phoneNumber: String
+  verifiedPhoneNumber: Boolean
+  profilePhoto: String
+  isDriving: Boolean
+  isRiding: Boolean
+  isTaken: Boolean
+  lastLng: Float
+  lastLat: Float
+  lastOrientation: Float
+  fbId: String
+  rideAsPassenger: rideUpdateManyWithoutPassengerInput
+  rideAsDriver: rideUpdateManyWithoutDriverInput
+  place: placeUpdateManyWithoutUserInput
+  message: messageUpdateManyWithoutUserInput
+  chat: chatUpdateOneInput
+}
+
+input userUpdateManyMutationInput {
+  email: String
+  verifiedEmail: Boolean
+  firstName: String
+  lastName: String
+  age: Int
+  password: String
+  phoneNumber: String
+  verifiedPhoneNumber: Boolean
+  profilePhoto: String
+  isDriving: Boolean
+  isRiding: Boolean
+  isTaken: Boolean
+  lastLng: Float
+  lastLat: Float
+  lastOrientation: Float
+  fbId: String
+}
+
+input userUpdateOneWithoutMessageInput {
+  create: userCreateWithoutMessageInput
+  update: userUpdateWithoutMessageDataInput
+  upsert: userUpsertWithoutMessageInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: userWhereUniqueInput
+}
+
+input userUpdateOneWithoutPlaceInput {
+  create: userCreateWithoutPlaceInput
+  update: userUpdateWithoutPlaceDataInput
+  upsert: userUpsertWithoutPlaceInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: userWhereUniqueInput
+}
+
+input userUpdateOneWithoutRideAsDriverInput {
+  create: userCreateWithoutRideAsDriverInput
+  update: userUpdateWithoutRideAsDriverDataInput
+  upsert: userUpsertWithoutRideAsDriverInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: userWhereUniqueInput
+}
+
+input userUpdateOneWithoutRideAsPassengerInput {
+  create: userCreateWithoutRideAsPassengerInput
+  update: userUpdateWithoutRideAsPassengerDataInput
+  upsert: userUpsertWithoutRideAsPassengerInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: userWhereUniqueInput
+}
+
+input userUpdateWithoutMessageDataInput {
+  email: String
+  verifiedEmail: Boolean
+  firstName: String
+  lastName: String
+  age: Int
+  password: String
+  phoneNumber: String
+  verifiedPhoneNumber: Boolean
+  profilePhoto: String
+  isDriving: Boolean
+  isRiding: Boolean
+  isTaken: Boolean
+  lastLng: Float
+  lastLat: Float
+  lastOrientation: Float
+  fbId: String
+  rideAsPassenger: rideUpdateManyWithoutPassengerInput
+  rideAsDriver: rideUpdateManyWithoutDriverInput
+  place: placeUpdateManyWithoutUserInput
+  chat: chatUpdateOneInput
+}
+
+input userUpdateWithoutPlaceDataInput {
+  email: String
+  verifiedEmail: Boolean
+  firstName: String
+  lastName: String
+  age: Int
+  password: String
+  phoneNumber: String
+  verifiedPhoneNumber: Boolean
+  profilePhoto: String
+  isDriving: Boolean
+  isRiding: Boolean
+  isTaken: Boolean
+  lastLng: Float
+  lastLat: Float
+  lastOrientation: Float
+  fbId: String
+  rideAsPassenger: rideUpdateManyWithoutPassengerInput
+  rideAsDriver: rideUpdateManyWithoutDriverInput
+  message: messageUpdateManyWithoutUserInput
+  chat: chatUpdateOneInput
+}
+
+input userUpdateWithoutRideAsDriverDataInput {
+  email: String
+  verifiedEmail: Boolean
+  firstName: String
+  lastName: String
+  age: Int
+  password: String
+  phoneNumber: String
+  verifiedPhoneNumber: Boolean
+  profilePhoto: String
+  isDriving: Boolean
+  isRiding: Boolean
+  isTaken: Boolean
+  lastLng: Float
+  lastLat: Float
+  lastOrientation: Float
+  fbId: String
+  rideAsPassenger: rideUpdateManyWithoutPassengerInput
+  place: placeUpdateManyWithoutUserInput
+  message: messageUpdateManyWithoutUserInput
+  chat: chatUpdateOneInput
+}
+
+input userUpdateWithoutRideAsPassengerDataInput {
+  email: String
+  verifiedEmail: Boolean
+  firstName: String
+  lastName: String
+  age: Int
+  password: String
+  phoneNumber: String
+  verifiedPhoneNumber: Boolean
+  profilePhoto: String
+  isDriving: Boolean
+  isRiding: Boolean
+  isTaken: Boolean
+  lastLng: Float
+  lastLat: Float
+  lastOrientation: Float
+  fbId: String
+  rideAsDriver: rideUpdateManyWithoutDriverInput
+  place: placeUpdateManyWithoutUserInput
+  message: messageUpdateManyWithoutUserInput
+  chat: chatUpdateOneInput
+}
+
+input userUpsertWithoutMessageInput {
+  update: userUpdateWithoutMessageDataInput!
+  create: userCreateWithoutMessageInput!
+}
+
+input userUpsertWithoutPlaceInput {
+  update: userUpdateWithoutPlaceDataInput!
+  create: userCreateWithoutPlaceInput!
+}
+
+input userUpsertWithoutRideAsDriverInput {
+  update: userUpdateWithoutRideAsDriverDataInput!
+  create: userCreateWithoutRideAsDriverInput!
+}
+
+input userUpsertWithoutRideAsPassengerInput {
+  update: userUpdateWithoutRideAsPassengerDataInput!
+  create: userCreateWithoutRideAsPassengerInput!
+}
+
+input userWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  verifiedEmail: Boolean
+  verifiedEmail_not: Boolean
+  firstName: String
+  firstName_not: String
+  firstName_in: [String!]
+  firstName_not_in: [String!]
+  firstName_lt: String
+  firstName_lte: String
+  firstName_gt: String
+  firstName_gte: String
+  firstName_contains: String
+  firstName_not_contains: String
+  firstName_starts_with: String
+  firstName_not_starts_with: String
+  firstName_ends_with: String
+  firstName_not_ends_with: String
+  lastName: String
+  lastName_not: String
+  lastName_in: [String!]
+  lastName_not_in: [String!]
+  lastName_lt: String
+  lastName_lte: String
+  lastName_gt: String
+  lastName_gte: String
+  lastName_contains: String
+  lastName_not_contains: String
+  lastName_starts_with: String
+  lastName_not_starts_with: String
+  lastName_ends_with: String
+  lastName_not_ends_with: String
+  age: Int
+  age_not: Int
+  age_in: [Int!]
+  age_not_in: [Int!]
+  age_lt: Int
+  age_lte: Int
+  age_gt: Int
+  age_gte: Int
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  phoneNumber: String
+  phoneNumber_not: String
+  phoneNumber_in: [String!]
+  phoneNumber_not_in: [String!]
+  phoneNumber_lt: String
+  phoneNumber_lte: String
+  phoneNumber_gt: String
+  phoneNumber_gte: String
+  phoneNumber_contains: String
+  phoneNumber_not_contains: String
+  phoneNumber_starts_with: String
+  phoneNumber_not_starts_with: String
+  phoneNumber_ends_with: String
+  phoneNumber_not_ends_with: String
+  verifiedPhoneNumber: Boolean
+  verifiedPhoneNumber_not: Boolean
+  profilePhoto: String
+  profilePhoto_not: String
+  profilePhoto_in: [String!]
+  profilePhoto_not_in: [String!]
+  profilePhoto_lt: String
+  profilePhoto_lte: String
+  profilePhoto_gt: String
+  profilePhoto_gte: String
+  profilePhoto_contains: String
+  profilePhoto_not_contains: String
+  profilePhoto_starts_with: String
+  profilePhoto_not_starts_with: String
+  profilePhoto_ends_with: String
+  profilePhoto_not_ends_with: String
+  isDriving: Boolean
+  isDriving_not: Boolean
+  isRiding: Boolean
+  isRiding_not: Boolean
+  isTaken: Boolean
+  isTaken_not: Boolean
+  lastLng: Float
+  lastLng_not: Float
+  lastLng_in: [Float!]
+  lastLng_not_in: [Float!]
+  lastLng_lt: Float
+  lastLng_lte: Float
+  lastLng_gt: Float
+  lastLng_gte: Float
+  lastLat: Float
+  lastLat_not: Float
+  lastLat_in: [Float!]
+  lastLat_not_in: [Float!]
+  lastLat_lt: Float
+  lastLat_lte: Float
+  lastLat_gt: Float
+  lastLat_gte: Float
+  lastOrientation: Float
+  lastOrientation_not: Float
+  lastOrientation_in: [Float!]
+  lastOrientation_not_in: [Float!]
+  lastOrientation_lt: Float
+  lastOrientation_lte: Float
+  lastOrientation_gt: Float
+  lastOrientation_gte: Float
+  fbId: String
+  fbId_not: String
+  fbId_in: [String!]
+  fbId_not_in: [String!]
+  fbId_lt: String
+  fbId_lte: String
+  fbId_gt: String
+  fbId_gte: String
+  fbId_contains: String
+  fbId_not_contains: String
+  fbId_starts_with: String
+  fbId_not_starts_with: String
+  fbId_ends_with: String
+  fbId_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  rideAsPassenger_every: rideWhereInput
+  rideAsPassenger_some: rideWhereInput
+  rideAsPassenger_none: rideWhereInput
+  rideAsDriver_every: rideWhereInput
+  rideAsDriver_some: rideWhereInput
+  rideAsDriver_none: rideWhereInput
+  place_every: placeWhereInput
+  place_some: placeWhereInput
+  place_none: placeWhereInput
+  message_every: messageWhereInput
+  message_some: messageWhereInput
+  message_none: messageWhereInput
+  chat: chatWhereInput
+  AND: [userWhereInput!]
+  OR: [userWhereInput!]
+  NOT: [userWhereInput!]
+}
+
+input userWhereUniqueInput {
+  id: ID
+}
+
+type verification {
+  id: ID!
+  target: String!
+  payload: String!
+  key: String!
+  verified: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type verificationConnection {
+  pageInfo: PageInfo!
+  edges: [verificationEdge]!
+  aggregate: Aggregateverification!
+}
+
+input verificationCreateInput {
+  target: String!
+  payload: String!
+  key: String!
+  verified: Boolean
+}
+
+type verificationEdge {
+  node: verification!
+  cursor: String!
+}
+
+enum verificationOrderByInput {
+  id_ASC
+  id_DESC
+  target_ASC
+  target_DESC
+  payload_ASC
+  payload_DESC
+  key_ASC
+  key_DESC
+  verified_ASC
+  verified_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type verificationPreviousValues {
+  id: ID!
+  target: String!
+  payload: String!
+  key: String!
+  verified: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type verificationSubscriptionPayload {
+  mutation: MutationType!
+  node: verification
+  updatedFields: [String!]
+  previousValues: verificationPreviousValues
+}
+
+input verificationSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: verificationWhereInput
+  AND: [verificationSubscriptionWhereInput!]
+  OR: [verificationSubscriptionWhereInput!]
+  NOT: [verificationSubscriptionWhereInput!]
+}
+
+input verificationUpdateInput {
+  target: String
+  payload: String
+  key: String
+  verified: Boolean
+}
+
+input verificationUpdateManyMutationInput {
+  target: String
+  payload: String
+  key: String
+  verified: Boolean
+}
+
+input verificationWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  target: String
+  target_not: String
+  target_in: [String!]
+  target_not_in: [String!]
+  target_lt: String
+  target_lte: String
+  target_gt: String
+  target_gte: String
+  target_contains: String
+  target_not_contains: String
+  target_starts_with: String
+  target_not_starts_with: String
+  target_ends_with: String
+  target_not_ends_with: String
+  payload: String
+  payload_not: String
+  payload_in: [String!]
+  payload_not_in: [String!]
+  payload_lt: String
+  payload_lte: String
+  payload_gt: String
+  payload_gte: String
+  payload_contains: String
+  payload_not_contains: String
+  payload_starts_with: String
+  payload_not_starts_with: String
+  payload_ends_with: String
+  payload_not_ends_with: String
+  key: String
+  key_not: String
+  key_in: [String!]
+  key_not_in: [String!]
+  key_lt: String
+  key_lte: String
+  key_gt: String
+  key_gte: String
+  key_contains: String
+  key_not_contains: String
+  key_starts_with: String
+  key_not_starts_with: String
+  key_ends_with: String
+  key_not_ends_with: String
+  verified: Boolean
+  verified_not: Boolean
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [verificationWhereInput!]
+  OR: [verificationWhereInput!]
+  NOT: [verificationWhereInput!]
+}
+
+input verificationWhereUniqueInput {
+  id: ID
+}

@@ -5,17 +5,34 @@ var typeDefs = require("./prisma-schema").typeDefs;
 
 var models = [
   {
-    name: "User",
+    name: "verification",
     embedded: false
   },
   {
-    name: "Post",
+    name: "ride",
+    embedded: false
+  },
+  {
+    name: "place",
+    embedded: false
+  },
+  {
+    name: "message",
+    embedded: false
+  },
+  {
+    name: "user",
+    embedded: false
+  },
+  {
+    name: "chat",
     embedded: false
   }
 ];
 exports.Prisma = prisma_lib_1.makePrismaClientClass({
   typeDefs,
   models,
-  endpoint: `https://us1.prisma.sh/rock-dc28b2/prisma-example/dev`
+  endpoint: `http://localhost:4466`,
+  secret: `wtfprisma`
 });
 exports.prisma = new exports.Prisma();

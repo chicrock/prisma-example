@@ -1,5 +1,5 @@
 type verification {
-  id: Int! @unique
+  id: ID! @unique
   target: String!
   payload: String!
   key: String!
@@ -9,7 +9,7 @@ type verification {
 }
 
 type ride {
-  id: Int! @unique
+  id: ID! @unique
   status: String! @default(value: "REQUESTING'")
   pickupAddress: String!
   pickupLat: Float! @default(value: 0)
@@ -20,36 +20,36 @@ type ride {
   price: Float! @default(value: 0)
   distance: String!
   duration: String!
-  passengerId: user
-  driverId: user
-  chatId: chat @unique
+  passenger: user @relation(name: "RidePassenger")
+  driver: user @relation(name: "RideDriver")
+  chat: chat @unique
   createdAt: DateTime!
   updatedAt: DateTime!
 }
 
 type place {
-  id: Int! @unique
+  id: ID! @unique
   name: String!
   lat: Float! @default(value: 0)
   lng: Float! @default(value: 0)
   address: String!
   isFav: Boolean! @default(value: "false")
-  userId: user
+  user: user @relation(name: "PlaceUser")
   createdAt: DateTime!
   updatedAt: DateTime!
 }
 
 type message {
-  id: Int! @unique
+  id: ID! @unique
   text: String!
   createdAt: DateTime!
   updatedAt: DateTime!
-  chatId: chat
-  userId: user
+  chat: chat
+  user: user @relation(name: "MessageUser")
 }
 
 type user @indexes(value: [{name: "IDX_e12875dfb3b1d92d7d7c5377e2", fields: ["email"], unique: "false"}]) {
-  id: Int! @unique
+  id: ID! @unique
   email: String
   verifiedEmail: Boolean! @default(value: "false")
   firstName: String!
@@ -68,19 +68,15 @@ type user @indexes(value: [{name: "IDX_e12875dfb3b1d92d7d7c5377e2", fields: ["em
   fbId: String
   createdAt: DateTime!
   updatedAt: DateTime!
-  ride: ride
-  ride: ride
-  place: place
-  message: message
-  chat: chat
+  rideAsPassenger: [ride] @relation(name: "RidePassenger")
+  rideAsDriver: [ride] @relation(name: "RideDriver")
+  place: [place] @relation(name: "UserPlace")
+  message: [message] @relation(name: "UserChatMessage")
   chat: chat
 }
 
 type chat {
-  id: Int! @unique
-  passengerId: user
-  driverId: user
-  rideId: Int
+  id: ID! @unique
   createdAt: DateTime!
   updatedAt: DateTime!
   ride: ride
