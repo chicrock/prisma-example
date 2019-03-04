@@ -1,0 +1,88 @@
+type verification {
+  id: Int! @unique
+  target: String!
+  payload: String!
+  key: String!
+  verified: Boolean! @default(value: "false")
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ride {
+  id: Int! @unique
+  status: String! @default(value: "REQUESTING'")
+  pickupAddress: String!
+  pickupLat: Float! @default(value: 0)
+  pickupLng: Float! @default(value: 0)
+  dropOffAddress: String!
+  dropOffLat: Float! @default(value: 0)
+  dropOffLng: Float! @default(value: 0)
+  price: Float! @default(value: 0)
+  distance: String!
+  duration: String!
+  passengerId: user
+  driverId: user
+  chatId: chat @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type place {
+  id: Int! @unique
+  name: String!
+  lat: Float! @default(value: 0)
+  lng: Float! @default(value: 0)
+  address: String!
+  isFav: Boolean! @default(value: "false")
+  userId: user
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type message {
+  id: Int! @unique
+  text: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  chatId: chat
+  userId: user
+}
+
+type user @indexes(value: [{name: "IDX_e12875dfb3b1d92d7d7c5377e2", fields: ["email"], unique: "false"}]) {
+  id: Int! @unique
+  email: String
+  verifiedEmail: Boolean! @default(value: "false")
+  firstName: String!
+  lastName: String!
+  age: Int
+  password: String
+  phoneNumber: String
+  verifiedPhoneNumber: Boolean! @default(value: "false")
+  profilePhoto: String!
+  isDriving: Boolean! @default(value: "false")
+  isRiding: Boolean! @default(value: "false")
+  isTaken: Boolean! @default(value: "false")
+  lastLng: Float! @default(value: 0)
+  lastLat: Float! @default(value: 0)
+  lastOrientation: Float! @default(value: 0)
+  fbId: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  ride: ride
+  ride: ride
+  place: place
+  message: message
+  chat: chat
+  chat: chat
+}
+
+type chat {
+  id: Int! @unique
+  passengerId: user
+  driverId: user
+  rideId: Int
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  ride: ride
+  message: message
+}
